@@ -4,4 +4,4 @@
 *.iml
 
 # only commit the encrypted version of the gradle properties
-gradle.properties
+variables.sh
