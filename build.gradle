@@ -1,0 +1,52 @@
+buildscript {
+  repositories {
+    jcenter()
+//    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+  }
+  dependencies {
+    classpath group: 'nl.qkrijger.gradle', name: 'docker-gradle', version: '0.2'
+  }
+}
+
+plugins {
+  id 'nebula.info' version '2.2.4'
+  id 'nebula.contacts' version '2.2.0'
+  id 'nebula.maven-apache-license' version '4.0.1'
+
+  id 'nebula.nebula-release' version '3.0.2'
+}
+apply plugin: 'docker'
+
+contacts {
+  'qkrijger@gmail.com' {
+    moniker 'Quinten Krijger'
+    github 'krijger'
+  }
+  'ernst.naezer@gmail.com' {
+    moniker 'Ernst Naezer'
+    github 'ernstnaezer'
+  }
+}
+
+def travisBuild = System.getenv('TRAVIS_BRANCH') != null
+def travisRelease = project.hasProperty('release.travisci') && project.property('release.travisci').toBoolean()
+logger.info "Running on Travis: '$travisBuild'"
+logger.info "Performing release on Travis: '$travisRelease'"
+
+//allprojects {
+//  apply plugin: 'docker'
+//  docker {
+//    stopContainers = !travisBuild
+//  }
+//}
+
+tasks.tagImage.doFirst {
+  project.version = project.version.toString().replaceAll('\\+', '')
+}
+tasks.pushImage.onlyIf { travisRelease }
+
+docker.imageName = 'qkrijger/hello-world-wiremock-server'
+
+//docker {
+//  dockerModuleType = DELIVERABLE_IMAGE
+//}
