@@ -1,10 +1,12 @@
+import static nl.qkrijger.gradle.docker.DockerModuleType.*
+
 buildscript {
   repositories {
     jcenter()
 //    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
   }
   dependencies {
-    classpath group: 'nl.qkrijger.gradle', name: 'docker-gradle', version: '0.2'
+    classpath group: 'nl.qkrijger.gradle', name: 'docker-gradle', version: '0.5.1'
   }
 }
 
@@ -15,7 +17,6 @@ plugins {
 
   id 'nebula.nebula-release' version '3.0.2'
 }
-apply plugin: 'docker'
 
 contacts {
   'qkrijger@gmail.com' {
@@ -33,22 +34,21 @@ def travisRelease = project.hasProperty('release.travisci') && project.property(
 logger.info "Running on Travis: '$travisBuild'"
 logger.info "Performing release on Travis: '$travisRelease'"
 
-//allprojects {
-//  apply plugin: 'docker'
-//  docker {
-//    stopContainers = !travisBuild
-//  }
-//}
+allprojects {
+  apply plugin: 'docker'
+  docker {
+    stopContainers = !travisBuild
+  }
+}
+docker {
+  imageName = 'qkrijger/hello-world-wiremock-server'
+  dockerModuleType = DELIVERABLE_IMAGE
+}
 
 tasks.tagImage.doFirst {
+  // to locally build and tag an image, the elaborate version with git hash etc must have the plus-sign removed, for
+  // that is not allowed in an image name
   project.version = project.version.toString().replaceAll('\\+', '')
 }
 tasks.release.dependsOn tasks.pushImage
 tasks.pushImage.onlyIf { travisRelease }
-
-docker.imageName = 'qkrijger/hello-world-wiremock-server'
-
-
-//docker {
-//  dockerModuleType = DELIVERABLE_IMAGE
-//}
