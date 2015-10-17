@@ -11,5 +11,4 @@ before_install:
   - docker -v
   - sudo iptables -n --list "DOCKER" >/dev/null 2>&1 || sudo iptables -N DOCKER
 
-#install: "./installViaTravis.sh"
 script: "./buildViaTravis.sh"
