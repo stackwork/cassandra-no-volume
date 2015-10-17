@@ -43,9 +43,11 @@ logger.info "Performing release on Travis: '$travisRelease'"
 tasks.tagImage.doFirst {
   project.version = project.version.toString().replaceAll('\\+', '')
 }
+tasks.release.dependsOn tasks.pushImage
 tasks.pushImage.onlyIf { travisRelease }
 
 docker.imageName = 'qkrijger/hello-world-wiremock-server'
+
 
 //docker {
 //  dockerModuleType = DELIVERABLE_IMAGE
