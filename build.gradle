@@ -1,12 +1,8 @@
-import static nl.qkrijger.gradle.docker.DockerModuleType.*
+import static org.stackwork.gradle.docker.ModuleType.*
 
 buildscript {
   repositories {
     jcenter()
-    maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
-  }
-  dependencies {
-    classpath group: 'nl.qkrijger.gradle', name: 'docker-gradle', version: '0.6.0-SNAPSHOT'
   }
 }
 
@@ -16,9 +12,9 @@ plugins {
   id 'nebula.maven-apache-license' version '4.0.1'
 
   id 'nebula.nebula-release' version '3.0.2'
-}
 
-apply plugin: 'docker'
+  id 'org.stackwork' version '0.6.0-rc.6'
+}
 
 contacts {
   'qkrijger@gmail.com' {
@@ -37,14 +33,14 @@ logger.info "Running on Travis: '$travisBuild'"
 logger.info "Performing release on Travis: '$travisRelease'"
 
 allprojects {
-  docker {
+  stackwork {
     stopContainers = !travisBuild
   }
 }
 
-docker {
+stackwork {
   imageName = 'qkrijger/hello-world-wiremock-server'
-  dockerModuleType = DELIVERABLE_IMAGE
+  moduleType = DELIVERABLE_IMAGE
 }
 
 tasks.tagImage.doFirst {
