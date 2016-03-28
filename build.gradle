@@ -13,7 +13,7 @@ plugins {
 
   id 'nebula.nebula-release' version '3.0.2'
 
-  id 'org.stackwork' version '0.6.0-rc.6'
+  id 'org.stackwork' version '0.6.0'
 }
 
 contacts {
