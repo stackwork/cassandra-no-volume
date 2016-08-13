@@ -1,2 +1,2 @@
 # hello-world-wiremock-server
-Simple image used in test cases of https://github.com/Krijger/docker-gradle
+Simple image used in test cases of https://github.com/stackwork/stackwork
