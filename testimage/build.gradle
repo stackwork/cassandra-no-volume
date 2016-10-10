@@ -1,7 +1,0 @@
-import static org.stackwork.gradle.docker.ModuleType.*
-
-apply plugin: 'stackwork'
-
-stackwork {
-  moduleType = TEST_IMAGE
-}

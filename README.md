@@ -1,2 +1,2 @@
-# hello-world-wiremock-server
-Simple image used in test cases of https://github.com/stackwork/stackwork
+# cassandra-no-volume
+Simple project using the files from the official cassandra image, but without the VOLUME statement

@@ -4,7 +4,7 @@ jdk: oraclejdk8
 language: groovy
 
 env:
-  DOCKER_COMPOSE_VERSION: 1.6.2
+  DOCKER_COMPOSE_VERSION: 1.8.1
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_089afaf79c27_key -iv $encrypted_089afaf79c27_iv -in variables.sh.enc -out variables.sh -d

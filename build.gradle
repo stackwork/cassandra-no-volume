@@ -13,17 +13,13 @@ plugins {
 
   id 'nebula.nebula-release' version '3.0.2'
 
-  id 'org.stackwork' version '0.6.0'
+  id 'org.stackwork' version '0.8.0'
 }
 
 contacts {
   'qkrijger@gmail.com' {
     moniker 'Quinten Krijger'
     github 'krijger'
-  }
-  'ernst.naezer@gmail.com' {
-    moniker 'Ernst Naezer'
-    github 'ernstnaezer'
   }
 }
 
@@ -39,7 +35,7 @@ allprojects {
 }
 
 stackwork {
-  imageName = 'qkrijger/hello-world-wiremock-server'
+  imageName = 'qkrijger/cassandra-no-volume-3.9'
   moduleType = DELIVERABLE_IMAGE
 }
 
