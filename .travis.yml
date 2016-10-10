@@ -10,12 +10,12 @@ env:
   - secure: CkipSW9XQLbu4hXIEOPD5GDS0tTuPyoCa5rJxooqCkSvwwsKcQxK1zZsdvgWDtix0w2lv+eUSgqdKImbqekNlZM+U7s2fYiZgwiIZ2gxe2KOX958+UcQrxfOqXFB7xn0cJQQSrlYdPStXgyNhubJBV/yBEOIRnoKmKIvlOjoHn5eCD+hVzweHrsvLk4er5VUr/xi0SzRIyepIVTqyHHubrfiYrqRe2VvRss2AXkDTfQ9YDEV6jZYc/pHwV9l9XZfHY2WZbDvFvKs4ya/OqJQFGyDXoHCqCzIylwn+M1tZMdJfnxG1QKJVga7ycFg7zQNwLqPfdOfU8KXAYIOx87xj3b5hDhL7VM8sJ1kQsX5b9EC2zWuJ/F6jXg3bVAAvWv/tbaAff9UcTsECwRDkEeeT1c7uCGRDcBQQS4R+gcMU8OZXb/AqaRptwa3zjUsSNao4oYZ/5ZwhZFseLotO7IoPmByEcgJz9GJAnjxcNY9dvIXDoK5vG63Zn4PqZFzPCiGc5x3TbbY815d96QdP2AOU5fYHjsmiVxAWfaxhVPbcdrZsYnmQHV2MLhmUoVpZrZH4/Wkp4KOmyHktew9yrfYvz9cJ8CR1MTqYycMztVlYmqBharAWos7j2LtVpqP3HbRidFXb4ZSWQTTbGOPfaX6so3xNu/gUev3Hmr78+hc6NE=
 before_install:
 - openssl aes-256-cbc -S $salt -K $key -iv $iv -in variables.sh.enc -out variables.sh -d
-- sudo apt-get -y update
-- sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
-- sudo rm /usr/local/bin/docker-compose
-- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) > docker-compose
-- chmod +x docker-compose
-- sudo mv docker-compose /usr/local/bin
+#- sudo apt-get -y update
+#- sudo apt-get -o Dpkg::Options::="--force-confnew" install -y docker-engine
+#- sudo rm /usr/local/bin/docker-compose
+#- curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m) > docker-compose
+#- chmod +x docker-compose
+#- sudo mv docker-compose /usr/local/bin
 - docker -v
 - docker-compose -v
 install: "./installViaTravis.sh"
